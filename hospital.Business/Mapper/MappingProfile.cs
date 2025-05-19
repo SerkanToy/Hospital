@@ -9,6 +9,7 @@ namespace hospital.Business.Mapper
         public MappingProfile()
         {
             CreateMap<User, RegisterRequestDTO>().ReverseMap();
+            CreateMap<User, LoginRequestDTO>().ReverseMap();
         }
     }
 }
