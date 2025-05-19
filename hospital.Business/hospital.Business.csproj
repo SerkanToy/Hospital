@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\hospital.Core\hospital.Core.csproj" />
+    <ProjectReference Include="..\hospital.DataAccess\hospital.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>
