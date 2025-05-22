@@ -5,14 +5,11 @@ using hospital.Core.Models;
 using hospital.DataAccess.Context.UserFolder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Win32.SafeHandles;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using hospital.DataAccess.Context;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net;
+using System.Security.Claims;
+using hospital.Core.Models;
 
 namespace hospital.Business.Concrete
 {
@@ -33,9 +30,55 @@ namespace hospital.Business.Concrete
             //this.context = context;
             TokenKey = configuration!.GetValue<string>("SecretKey:Key")!;
         }
-        public Task<ApiResponse> Login(LoginRequestDTO model)
+        public async Task<ApiResponse> Login(LoginRequestDTO model)
         {
-            throw new NotImplementedException();
+            User user = await userManager.FindByEmailAsync(model.Email);
+            if (user is not null)
+            {
+                bool isPasswordValid = await userManager.CheckPasswordAsync(user, model.Passwrd);
+
+                if(!isPasswordValid)
+                {
+                    apiResponse.StatusCode = HttpStatusCode.BadRequest;
+                    apiResponse.ErrorMessage.Add("Kullanıcı veya Şifre Yanlış");
+                    apiResponse.isSuccess = false;
+                    return apiResponse;
+                }
+
+                var roles = await userManager.GetRolesAsync(user);
+                JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+                byte[] key = System.Text.Encoding.ASCII.GetBytes(TokenKey);
+                SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor()
+                {
+                    Subject = new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim("FullName", $"{user.Name} {user.SurName}"),
+                        new Claim(ClaimTypes.NameIdentifier, user.Id),
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.Name, user.UserName),
+                        new Claim(ClaimTypes.Role, string.Join(",", roles))
+                    }),
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                };
+
+                SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+
+                LoginResponseModel loginResponseModel = new LoginResponseModel()
+                {
+                    Token = tokenHandler.WriteToken(token),
+                    Email = user.Email,
+                };
+                apiResponse.StatusCode = HttpStatusCode.OK;
+                apiResponse.isSuccess = true;
+                apiResponse.Result = loginResponseModel;
+                return apiResponse;
+            }
+
+            apiResponse.StatusCode = HttpStatusCode.BadRequest;
+            apiResponse.ErrorMessage.Add("Kullanıcı veya Şifre Yanlış");
+            apiResponse.isSuccess = false;
+            return apiResponse;
         }
 
         public async Task<ApiResponse> Register(RegisterRequestDTO model)
