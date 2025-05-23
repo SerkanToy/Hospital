@@ -1,6 +1,7 @@
 ﻿using hospital.Business.Abstraction;
 using hospital.Business.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 
 namespace hospital.Doctor.Controllers
 {
@@ -12,13 +13,6 @@ namespace hospital.Doctor.Controllers
         public AuthController(IUserService userService)
         {
             this.userService = userService;
-        }
-
-        [HttpGet()]
-        [ActionName(name:"getir")]
-        public IEnumerable<string> All()
-        {
-            return new string[] { "value1", "value2" };
         }
 
         [HttpPost(),ActionName(name: "giris-yap")]
