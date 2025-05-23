@@ -1,5 +1,8 @@
 ﻿
 using hospital.DataAccess.Context;
+using hospital.DataAccess.Context.UserFolder;
+using hospital.Doctor.Extensions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace hospital.Doctor
@@ -15,7 +18,10 @@ namespace hospital.Doctor
             builder.Services.AddControllers();
             builder.Services.AddDbContext<HospitalDatabase>(opt =>
                     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<HospitalDatabase>();
 
+            builder.Services.AddApplicationLayer(builder.Configuration);
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 

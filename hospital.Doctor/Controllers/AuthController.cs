@@ -1,10 +1,10 @@
 ﻿using hospital.Business.Abstraction;
-using Microsoft.AspNetCore.Http;
+using hospital.Business.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace hospital.Doctor.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -13,5 +13,35 @@ namespace hospital.Doctor.Controllers
         {
             this.userService = userService;
         }
+
+        [HttpGet()]
+        [ActionName(name:"getir")]
+        public IEnumerable<string> All()
+        {
+            return new string[] { "value1", "value2" };
+        }
+
+        [HttpPost(),ActionName(name: "giris-yap")]
+        public async Task<IActionResult> LoginUser([FromBody] LoginRequestDTO model)
+        {
+            var response = await userService.Login(model);
+            if (response.isSuccess)
+            {
+                return Ok(response);
+            }
+            return BadRequest(response);
+        }
+
+        [HttpPost(),ActionName(name: "kayit-ol")]
+        public async Task<IActionResult> RegisterUser([FromBody] RegisterRequestDTO model)
+        {
+            var response = await userService.Register(model);
+            if (response.isSuccess)
+            {
+                return Ok(response);
+            }
+            return BadRequest(response);
+        }
+
     }
 }
