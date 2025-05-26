@@ -487,5 +487,6 @@ $RECYCLE.BIN/
 ./Context/*.*
 Context/*.*
 
+Migrations
 ./Migrations
 Migrations/*.*

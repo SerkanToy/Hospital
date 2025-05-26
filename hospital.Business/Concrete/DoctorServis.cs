@@ -1,43 +1,41 @@
 ﻿using AutoMapper;
 using hospital.Business.Abstraction;
 using hospital.Business.Dtos;
+using hospital.Business.Dtos.Doctor;
 using hospital.Core.Models;
+using hospital.DataAccess.Configurations.UserFolder;
 using hospital.DataAccess.Context.UserFolder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Net;
 using System.Security.Claims;
-using hospital.Core.Models;
 
 namespace hospital.Business.Concrete
 {
-    public class UserService : IUserService
+    public class DoctorServis : IDoctorServis
     {
         private readonly ApiResponse apiResponse;
-        //private readonly HospitalDatabase context;
         private readonly UserManager<User> userManager;
         private readonly RoleManager<Role> roleManager;
         private string TokenKey;
         private readonly IMapper mapper;
-        public UserService(UserManager<User> userManager, RoleManager<Role> roleManager, ApiResponse apiResponse, IMapper mapper, IConfiguration configuration)
+        public DoctorServis(ApiResponse apiResponse, UserManager<User> userManager, IMapper mapper, RoleManager<Role> roleManager)
         {
+            this.apiResponse = apiResponse;
             this.userManager = userManager;
             this.roleManager = roleManager;
-            this.apiResponse = apiResponse;
             this.mapper = mapper;
-            //this.context = context;
-            TokenKey = configuration!.GetValue<string>("SecretKey:Key")!;
-        }
-        public async Task<ApiResponse> Login(LoginRequestDTO model)
+        }        
+        
+        public async Task<ApiResponse> Login(LoginDoktorRequestDTO model)
         {
             User user = await userManager.FindByEmailAsync(model.Email);
             if (user is not null)
             {
                 bool isPasswordValid = await userManager.CheckPasswordAsync(user, model.Passwrd);
 
-                if(!isPasswordValid)
+                if (!isPasswordValid)
                 {
                     apiResponse.StatusCode = HttpStatusCode.BadRequest;
                     apiResponse.ErrorMessage.Add("Kullanıcı veya Şifre Yanlış");
@@ -81,54 +79,7 @@ namespace hospital.Business.Concrete
             return apiResponse;
         }
 
-        public async Task<ApiResponse> Register(RegisterRequestDTO model)
-        {
-            User user = await userManager.FindByEmailAsync(model.Email);
-
-            if (user != null)
-            {
-                apiResponse.StatusCode = HttpStatusCode.BadRequest;
-                apiResponse.ErrorMessage.Add("Mail Adresi Kayıtlı");
-                apiResponse.isSuccess = false;
-                return apiResponse;
-            }
-
-            User createUser = new User()
-                {
-                    Name = model.Name,
-                    SurName = model.SurName,
-                    Email = model.Email,
-                    UserName = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    CreatedBy = "Sistem",
-                    CreatedDate = DateTime.Now,
-                    IsDeleted = false
-                };
-
-            var result = await userManager.CreateAsync(createUser, model.Password);
-
-            if (result.Succeeded)
-            {
-                IdentityResult result1 = userManager.AddToRoleAsync(createUser, model.UserType).GetAwaiter().GetResult();
-                apiResponse.StatusCode = HttpStatusCode.Created;
-                apiResponse.ErrorMessage = new List<string>();
-                apiResponse.isSuccess = true;
-                apiResponse.Result = new RegisterRequestDTO { Email = model.Email, PhoneNumber = model.PhoneNumber, Name = model.Name, SurName = model.SurName };
-                return apiResponse;
-            }
-
-            result.Errors.ToList().ForEach(x =>
-            {
-                apiResponse.ErrorMessage.Add(x.Description);
-            });
-            apiResponse.StatusCode = HttpStatusCode.BadRequest;
-            apiResponse.isSuccess = false;
-
-
-            return apiResponse;
-        }
-
-        public async Task<ApiResponse> Update(RegisterRequestDTO model)
+        public async Task<ApiResponse> Register(RegisterDoktorRequestDTO model)
         {
             User user = await userManager.FindByEmailAsync(model.Email);
 
@@ -161,6 +112,108 @@ namespace hospital.Business.Concrete
                 apiResponse.ErrorMessage = new List<string>();
                 apiResponse.isSuccess = true;
                 apiResponse.Result = new RegisterRequestDTO { Email = model.Email, PhoneNumber = model.PhoneNumber, Name = model.Name, SurName = model.SurName };
+                return apiResponse;
+            }
+
+            result.Errors.ToList().ForEach(x =>
+            {
+                apiResponse.ErrorMessage.Add(x.Description);
+            });
+            apiResponse.StatusCode = HttpStatusCode.BadRequest;
+            apiResponse.isSuccess = false;
+
+
+            return apiResponse;
+        }
+
+        public async Task<ApiResponse> Update(UpdateDoktorRequestDTO model)
+        {
+            if(model is null)
+            { 
+                return await Task.FromResult(new ApiResponse
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    isSuccess = false,
+                    ErrorMessage = new List<string> { "Güncelleme için gerekli bilgiler eksik" }
+                });
+            }
+
+            User user = userManager.Users.FirstOrDefault(x => x.Id == model.Id);
+
+            if (user is null)
+            {
+                return await Task.FromResult(new ApiResponse
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    isSuccess = false,
+                    ErrorMessage = new List<string> { "Kullanıcı bulunamadı" }
+                });
+            }
+
+            user.Name = model.Name;
+            user.SurName = model.SurName;
+            user.Email = model.Email;
+            user.UserName = model.Email;
+            user.PhoneNumber = model.PhoneNumber;
+            user.UpdatedBy = "Sistem";
+            user.UpdateDate = DateTime.Now;
+            user.SecurityStamp = Guid.NewGuid().ToString();
+            user.ConcurrencyStamp = Guid.NewGuid().ToString();
+
+            var result = userManager.UpdateAsync(user).GetAwaiter().GetResult();
+
+            if (result.Succeeded)
+            {
+                apiResponse.StatusCode = HttpStatusCode.OK;
+                apiResponse.isSuccess = true;
+                apiResponse.Result = mapper.Map<UpdateDoktorRequestDTO>(user);
+                return apiResponse;
+            }
+
+            result.Errors.ToList().ForEach(x =>
+            {
+                apiResponse.ErrorMessage.Add(x.Description);
+            });
+            apiResponse.StatusCode = HttpStatusCode.BadRequest;
+            apiResponse.isSuccess = false;
+
+
+            return apiResponse;
+        }
+        
+        public async Task<ApiResponse> Delete(DeleteDoktorRequestDTO model)
+        {
+            if (model is null)
+            {
+                return await Task.FromResult(new ApiResponse
+                {
+                    StatusCode = HttpStatusCode.BadRequest,
+                    isSuccess = false,
+                    ErrorMessage = new List<string> { "Silme İşlemi Başarısız." }
+                });
+            }
+
+            User user = userManager.Users.FirstOrDefault(x => x.Id == model.Id)!;
+
+            if (user is null)
+            {
+                return await Task.FromResult(new ApiResponse
+                {
+                    StatusCode = HttpStatusCode.NotFound,
+                    isSuccess = false,
+                    ErrorMessage = new List<string> { "Kullanıcı bulunamadı" }
+                });
+            }
+
+            user.IsDeleted = true;
+
+            var result = userManager.UpdateAsync(user).GetAwaiter().GetResult();
+
+            if (result.Succeeded)
+            {
+                apiResponse.StatusCode = HttpStatusCode.OK;
+                apiResponse.isSuccess = true;
+                apiResponse.Result = mapper.Map<UpdateDoktorRequestDTO>(user);
                 return apiResponse;
             }
 

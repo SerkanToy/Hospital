@@ -27,6 +27,14 @@ namespace hospital.DataAccess.Configurations.UserFolder
                         Name = "user",
                         ConcurrencyStamp = "96FE0FFC-B075-4D0C-9DD2-083109759D61"
                     }
+                    ,
+                    new Role
+                    {
+                        Id = "9B79C69F-26D0-492A-A420-FAE2CE1DFFB1",
+                        NormalizedName = "DOCTOR",
+                        Name = "doctor",
+                        ConcurrencyStamp = "71210ABB-BF25-4C3B-B03A-65FA8995EBBE"
+                    }
                 });
         }
     }

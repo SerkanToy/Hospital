@@ -20,5 +20,6 @@ namespace hospital.Core.Models
         public bool isSuccess { get; set; }
         public List<string> ErrorMessage { get; set; }
         public object Result { get; set; }
+        public IEnumerable<object> Results { get; set; }
     }
 }
