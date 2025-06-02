@@ -2,8 +2,10 @@
 using hospital.DataAccess.Context;
 using hospital.DataAccess.Context.UserFolder;
 using hospital.Doctor.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace hospital.Doctor
 {
@@ -20,6 +22,9 @@ namespace hospital.Doctor
                     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
             builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<HospitalDatabase>();
 
+
+            builder.Services.AddJwtBearerAuthentication(configuration:builder.Configuration);
+
             builder.Services.AddApplicationLayer(builder.Configuration);
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -35,6 +40,7 @@ namespace hospital.Doctor
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

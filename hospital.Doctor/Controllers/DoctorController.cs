@@ -61,7 +61,7 @@ namespace hospital.Doctor.Controllers
         // POST api/<DoctorController>
         [HttpPost]
         [ActionName("doctor-kayit")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] RegisterDoktorRequestDTO value)
         {
             if (value is null)
