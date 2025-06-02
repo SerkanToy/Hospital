@@ -1,4 +1,5 @@
 ﻿using hospital.DataAccess.Context.UserFolder;
+using hospital.DataAccess.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,12 +10,10 @@ namespace hospital.DataAccess.Configurations.UserFolder
         public void Configure(EntityTypeBuilder<RoleClaim> builder)
         {
             // Primary key
-            builder.HasKey(rc => rc.Id);
+            builder.HasKey(uc => uc.Id);
 
-            // Maps to the AspNetRoleClaims table
-            builder.ToTable("RoleClaim");
-
-
+            // Maps to the AspNetUserClaims table
+            builder.ToTable("UserClaims");
         }
     }
 }

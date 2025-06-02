@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace hospital.DataAccess.Domain
 {
-    public class Diagnosis
+    public class Address
     {
-        public Diagnosis()
+        public Address()
         {
             Id = Guid.NewGuid().ToString();
             CreatedBy = "Sistem";
@@ -18,7 +18,10 @@ namespace hospital.DataAccess.Domain
         }
         public string Id { get; set; }
         public string Name { get; set; }
-        public ICollection<DiagnosisPatientUser> DiagnosisPatientUsers { get; set; }
+        public string? PatientId { get; set; }
+        public Patient? Patient { get; set; }
+        public string? UserId { get; set; }
+        public User? User { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? UpdatedBy { get; set; }

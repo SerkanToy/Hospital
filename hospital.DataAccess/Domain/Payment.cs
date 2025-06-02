@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,12 @@ namespace hospital.DataAccess.Domain
         public Payment()
         {
             Id = Guid.NewGuid().ToString();
-            CreatedBy = "Sistem";
+            CreatedBy = "----------";
             CreatedDate = DateTime.Now;
             IsDeleted = false;
         }
         public string Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; }        
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? UpdatedBy { get; set; }

@@ -98,8 +98,9 @@ namespace hospital.Business.Concrete
                 Email = model.Email,
                 UserName = model.Email,
                 PhoneNumber = model.PhoneNumber,
-                CreatedBy = "Sistem",
+                CreatedBy = model.FullName,
                 CreatedDate = DateTime.Now,
+                TCNo = model.TCNo,
                 IsDeleted = false
             };
 
@@ -150,12 +151,13 @@ namespace hospital.Business.Concrete
                 });
             }
 
-            user.Name = model.Name;
-            user.SurName = model.SurName;
-            user.Email = model.Email;
-            user.UserName = model.Email;
-            user.PhoneNumber = model.PhoneNumber;
-            user.UpdatedBy = "Sistem";
+            user.Name = model.Name ?? user.Name;
+            user.SurName = model.SurName ?? user.SurName;
+            user.Email = model.Email ?? user.Email;
+            user.UserName = model.Email?? user.UserName;
+            user.PhoneNumber = model.PhoneNumber ?? user.PhoneNumber;
+            user.TCNo = model.TCNo ?? user.TCNo;
+            user.UpdatedBy = model.FullName;
             user.UpdateDate = DateTime.Now;
             user.SecurityStamp = Guid.NewGuid().ToString();
             user.ConcurrencyStamp = Guid.NewGuid().ToString();
@@ -206,6 +208,8 @@ namespace hospital.Business.Concrete
             }
 
             user.IsDeleted = true;
+            user.DeleteBy = model.FullName;
+            user.DeleteDate = DateTime.Now;
 
             var result = userManager.UpdateAsync(user).GetAwaiter().GetResult();
 
@@ -213,7 +217,7 @@ namespace hospital.Business.Concrete
             {
                 apiResponse.StatusCode = HttpStatusCode.OK;
                 apiResponse.isSuccess = true;
-                apiResponse.Result = mapper.Map<UpdateDoktorRequestDTO>(user);
+                apiResponse.Result = mapper.Map<DeleteDoktorRequestDTO>(user);
                 return apiResponse;
             }
 
