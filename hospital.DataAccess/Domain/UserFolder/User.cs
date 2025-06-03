@@ -15,6 +15,7 @@ namespace hospital.DataAccess.Context.UserFolder
             IsDeleted = false;
             Sex = Gender.Man;
             ProfilImages = new List<ProfilImage>();
+            UserUnits = new List<UserUnit>();
         }
         public string Name { get; set; }
         public string SurName { get; set; }
@@ -35,5 +36,6 @@ namespace hospital.DataAccess.Context.UserFolder
         public ICollection<Description> Descriptions { get; set; }
         public ICollection<DiagnosisPatientUser> DiagnosisPatientUsers { get; set; }
         public ICollection<ProfilImage> ProfilImages { get; set; }
+        public ICollection<UserUnit> UserUnits { get; set; }
     }
 }

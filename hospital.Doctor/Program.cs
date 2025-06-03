@@ -20,7 +20,7 @@ namespace hospital.Doctor
             builder.Services.AddControllers();
             builder.Services.AddDbContext<HospitalDatabase>(opt =>
                     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<HospitalDatabase>();
+            
 
 
             builder.Services.AddJwtBearerAuthentication(configuration:builder.Configuration);

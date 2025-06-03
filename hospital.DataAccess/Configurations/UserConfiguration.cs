@@ -20,6 +20,7 @@ namespace hospital.DataAccess.Configurations.UserFolder
             builder.HasMany(x => x.UserAndPatients).WithOne(y => y.User).HasForeignKey(y => y.UserId).OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(x => x.Addresses).WithOne(y => y.User).HasForeignKey(y => y.UserId).OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(up => up.DiagnosisPatientUsers).WithOne(up => up.User).HasForeignKey(up => up.UserId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(up => up.UserUnits).WithOne(up => up.User).HasForeignKey(up => up.UserId).OnDelete(DeleteBehavior.NoAction);
             builder.ToTable("User");
 
             User user = new User

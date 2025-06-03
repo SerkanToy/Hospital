@@ -7,12 +7,14 @@ namespace hospital.DataAccess.Domain
     {
         public UserTitle()
         {
-            StartDate = DateTime.Now;
+            Date = DateOnly.FromDateTime(DateTime.Now);
+            Time = TimeOnly.FromDateTime(DateTime.Now);
         }
         public string UserId { get; set; }
-        public User? User { get; set; }
+        public User User { get; set; }
         public string TitleId { get; set; }
-        public Title? Title { get; set; }
-        public DateTime? StartDate { get; set; }
+        public Title Title { get; set; }
+        public DateOnly Date { get; set; }
+        public TimeOnly Time { get; set; }
     }
 }

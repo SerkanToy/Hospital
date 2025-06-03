@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using hospital.DataAccess.Context;
+using hospital.DataAccess.Context.UserFolder;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 namespace hospital.Doctor.Extensions
@@ -7,6 +9,7 @@ namespace hospital.Doctor.Extensions
     {
         public static void AddJwtBearerAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddIdentity<User, Role>().AddEntityFrameworkStores<HospitalDatabase>();
             string tokenKey = configuration.GetValue<string>("SecretKey:Key")!;
             services.AddAuthentication(aut =>
             {
