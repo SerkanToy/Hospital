@@ -18,6 +18,9 @@ namespace hospital.DataAccess.Configurations
             builder.HasMany(up => up.Addresses).WithOne(u => u.Patient).HasForeignKey(up => up.PatientId).OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(up => up.Descriptions).WithOne(u => u.Patient).HasForeignKey(up => up.PatientId).OnDelete(DeleteBehavior.NoAction);
             builder.HasMany(up => up.DiagnosisPatientUsers).WithOne(up => up.Patient).HasForeignKey(up => up.PatientId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(up => up.Bills).WithOne(up => up.Patient).HasForeignKey(up => up.PatientId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(up => up.RoomAndPatients).WithOne(up => up.Patient).HasForeignKey(up => up.PatientId).OnDelete(DeleteBehavior.NoAction);
+            builder.HasMany(up => up.Medicine).WithOne(up => up.Patient).HasForeignKey(up => up.PatientId).OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

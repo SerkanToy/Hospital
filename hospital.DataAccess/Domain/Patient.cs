@@ -19,6 +19,8 @@ namespace hospital.DataAccess.Domain
             Addresses = new List<Address>();
             Descriptions = new List<Description>();
             Sex = Gender.Man;
+            Medicine = new List<Medicine>();
+            Bills = new List<Bill>();
         }
         public string Id { get; set; }
         public string Name { get; set; }
@@ -30,6 +32,9 @@ namespace hospital.DataAccess.Domain
         public ICollection<Description> Descriptions { get; set; }
         public ICollection<Address> Addresses { get; set; }
         public ICollection<UserAndPatient> UserAndPatients { get; set; }
+        public ICollection<Medicine> Medicine { get; set; }
+        public ICollection<Bill> Bills { get; set; }
+        public ICollection<RoomAndPatient> RoomAndPatients { get; set; } = new List<RoomAndPatient>();
         public ICollection<DiagnosisPatientUser> DiagnosisPatientUsers { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }

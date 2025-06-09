@@ -6,18 +6,10 @@ using System.Threading.Tasks;
 
 namespace hospital.DataAccess.Domain
 {
-    public class Medicine
+    public class RoomAndPatient
     {
-        public Medicine()
-        {
-            Id = Guid.NewGuid().ToString();
-            CreatedBy = "Sistem";
-            CreatedDate = DateTime.Now;
-            IsDeleted = false;
-        }
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Price { get; set; }
+        public string RoomId { get; set; }
+        public Room Room { get; set; }
         public string PatientId { get; set; }
         public Patient Patient { get; set; }
         public string? CreatedBy { get; set; }

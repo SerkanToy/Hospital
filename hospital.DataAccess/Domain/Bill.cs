@@ -17,6 +17,9 @@ namespace hospital.DataAccess.Domain
         }
         public string Id { get; set; }
         public string Name { get; set; }
+        public string Price { get; set; }
+        public string PatientId { get; set; }
+        public Patient Patient { get; set; }
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? UpdatedBy { get; set; }

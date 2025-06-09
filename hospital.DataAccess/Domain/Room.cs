@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace hospital.DataAccess.Domain
+﻿namespace hospital.DataAccess.Domain
 {
     public class Room
     {
@@ -17,6 +11,7 @@ namespace hospital.DataAccess.Domain
         }
         public string Id { get; set; }
         public string Name { get; set; }
+        public ICollection<RoomAndPatient> RoomAndPatients { get; set; } = new List<RoomAndPatient>();  
         public string? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string? UpdatedBy { get; set; }
