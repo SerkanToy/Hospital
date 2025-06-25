@@ -8,15 +8,15 @@ function Revenue() {
                     <div className="card-inner">
                         <div className="card-title-group">
                             <div className="card-title">
-                                <h6 className="title">Today Revenue</h6>
+                                <h6 className="title">OPD Income</h6>
                             </div>
                         </div>
                         <div className="data">
                             <div className="data-group">
-                                <div className="amount">$2,338</div>
+                                <div className="amount">$12,338</div>
                                 <div className="nk-ecwg6-ck"><canvas
                                     className="ecommerce-line-chart-s3"
-                                    id="todayRevenue"></canvas></div>
+                                    id="opdIncome"></canvas></div>
                             </div>
                             <div className="info"><span className="change down text-danger"><em
                                 className="icon ni ni-arrow-long-down"></em>2.34%</span><span>

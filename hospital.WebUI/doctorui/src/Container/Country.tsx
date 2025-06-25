@@ -10,45 +10,43 @@ function Country() {
               <h5 className="title mb-4">Select Your Country</h5>
               <div className="nk-country-region">
                 <ul className="country-list text-center gy-2">
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/arg.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/arg.png" alt=""
                     className="country-flag" /><span className="country-name">Argentina</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/aus.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/aus.png" alt=""
                     className="country-flag" /><span className="country-name">Australia</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/bangladesh.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/bangladesh.png" alt=""
                     className="country-flag" /><span className="country-name">Bangladesh</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/canada.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/canada.png" alt=""
                     className="country-flag" /><span className="country-name">Canada
                       <small>(English)</small></span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/china.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/china.png" alt=""
                     className="country-flag" /><span className="country-name">Centrafricaine</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/china.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/china.png" alt=""
                     className="country-flag" /><span className="country-name">China</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/french.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/french.png" alt=""
                     className="country-flag" /><span className="country-name">France</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/germany.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/germany.png" alt=""
                     className="country-flag"/><span className="country-name">Germany</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/iran.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/iran.png" alt=""
                     className="country-flag"/><span className="country-name">Iran</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/italy.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/italy.png" alt=""
                     className="country-flag"/><span className="country-name">Italy</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/mexico.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/mexico.png" alt=""
                     className="country-flag"/><span className="country-name">México</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/philipine.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/philipine.png" alt=""
                     className="country-flag"/><span className="country-name">Philippines</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/portugal.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/portugal.png" alt=""
                     className="country-flag"/><span className="country-name">Portugal</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/s-africa.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/s-africa.png" alt=""
                     className="country-flag"/><span className="country-name">South Africa</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/spanish.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/spanish.png" alt=""
                     className="country-flag"/><span className="country-name">Spain</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/switzerland.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/switzerland.png" alt=""
                     className="country-flag"/><span className="country-name">Switzerland</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/uk.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/uk.png" alt=""
                     className="country-flag"/><span className="country-name">United Kingdom</span></a></li>
-                  <li><a href="#" className="country-item"><img src="assets/images/flags/english.png" alt=""
+                  <li><a href="#" className="country-item"><img src="assets/img/flags/english.png" alt=""
                     className="country-flag"/><span className="country-name">United State</span></a></li>
-                    <li><a href="#" className="country-item"><img src="asstes/images/flags/english.png" alt=""
-                    className="country-flag"/><span className="country-name">Türkiye</span></a></li>
                 </ul>
               </div>
             </div>
