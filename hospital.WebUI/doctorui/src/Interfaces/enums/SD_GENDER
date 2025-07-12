@@ -1,0 +1,5 @@
+export enum SD_GENDER {
+    woman = 0,
+    man = 1,
+    transvestit = 2
+}

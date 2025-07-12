@@ -1,4 +1,5 @@
 import React from 'react'
+import ProfilTwo from './ProfilTwo'
 
 function Menu() {
     return (
@@ -52,39 +53,9 @@ function Menu() {
                     </ul>
                   </div>
                 </div>
-                <div className="nk-sidebar-profile nk-sidebar-profile-fixed"><a href="#" className="toggle"
-                  data-target="profileDD">
-                  <div className="user-avatar"><span>AB</span></div>
-                </a>
-                  <div className="dropdown-menu dropdown-menu-md m-1 nk-sidebar-profile-dropdown"
-                    data-content="profileDD">
-                    <div className="dropdown-inner user-card-wrap d-none d-md-block">
-                      <div className="user-card">
-                        <div className="user-avatar"><span>AB</span></div>
-                        <div className="user-info"><span className="lead-text">Abu Bin Ishtiyak</span><span
-                          className="sub-text text-soft">info@softnio.com</span></div>
-                      </div>
-                    </div>
-                    <div className="dropdown-inner">
-                      <ul className="link-list">
-                        <li><a href="user-profile-regular.html"><em
-                          className="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-                        <li><a href="user-profile-setting.html"><em
-                          className="icon ni ni-setting-alt"></em><span>Account Setting</span></a>
-                        </li>
-                        <li><a href="user-profile-activity.html"><em
-                          className="icon ni ni-activity-alt"></em><span>Login Activity</span></a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div className="dropdown-inner">
-                      <ul className="link-list">
-                        <li><a href="#"><em className="icon ni ni-signout"></em><span>Sign out</span></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+
+                <ProfilTwo />
+
               </div>
             </div>
           </div>

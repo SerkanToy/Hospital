@@ -1,7 +1,6 @@
 import React from 'react';
 
 /*import './App.css';
-
 import './Css/dashlite9b70.css'
 import './Css/theme9b70.css'*/
 
@@ -9,7 +8,7 @@ import Menu from './Container/menu'
 import Country from './Container/Country'
 import Hospital from './Pages/Hospital';
 import Topbar from './Container/Topbar';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Adddoctor from './Pages/Doctor/Adddoctor';
 import Doctors from './Pages/Doctor/Doctors';
 

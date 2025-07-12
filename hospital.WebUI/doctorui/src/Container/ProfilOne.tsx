@@ -18,21 +18,34 @@ function ProfilOne() {
                 </div>
                 <div className="dropdown-inner">
                     <ul className="link-list">
-                        <li><a href="user-profile-regular.html"><em
-                            className="icon ni ni-user-alt"></em><span>View
-                                Profile</span></a></li>
-                        <li><a href="user-profile-setting.html"><em
-                            className="icon ni ni-setting-alt"></em><span>Account
-                                Setting</span></a></li>
-                        <li><a href="user-profile-activity.html"><em
-                            className="icon ni ni-activity-alt"></em><span>Login
-                                Activity</span></a></li>
+                        <li>
+                            <a href="user-profile-regular.html">
+                                <em className="icon ni ni-user-alt"></em>
+                                <span>Profil</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="user-profile-setting.html">
+                                <em className="icon ni ni-setting-alt"></em>
+                                <span>Ayarlar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="user-profile-activity.html">
+                                <em className="icon ni ni-activity-alt"></em>
+                                <span>Login Activity</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div className="dropdown-inner">
                     <ul className="link-list">
-                        <li><a href="#"><em className="icon ni ni-signout"></em><span>Sign
-                            out</span></a></li>
+                        <li>
+                            <a href="#">
+                                <em className="icon ni ni-signout"></em>
+                                <span>Çıkış Yap</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
