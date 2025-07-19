@@ -11,6 +11,7 @@ import Topbar from './Container/Topbar';
 import { Route, Routes } from 'react-router-dom';
 import Adddoctor from './Pages/Doctor/Adddoctor';
 import Doctors from './Pages/Doctor/Doctors';
+import Doctorsdetail from './Pages/Doctor/Doctorsdetail';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
               <Route path="/home" element={<Hospital />} />
               <Route path="/adddoctor" element={<Adddoctor />} />
               <Route path="/doctors" element={<Doctors />} />
+              <Route path="/doctorsdetail" element={<Doctorsdetail />} />
             </Routes>
           </div>
         </div>

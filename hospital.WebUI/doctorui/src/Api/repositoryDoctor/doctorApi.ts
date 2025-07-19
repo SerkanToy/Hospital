@@ -20,7 +20,7 @@ const doctorApi = createApi({
         }),
         createDoctor:builder.mutation({
             query:(doctorModel:any) => ({
-                url: "https://localhost:7027/api/Doctor/doctorkayit",//`${ENDPOINT_DOCTOR_CREATE}`,
+                url: `${ENDPOINT_DOCTOR_CREATE}`,
                 method:"POST",
                 body:doctorModel              
             }),

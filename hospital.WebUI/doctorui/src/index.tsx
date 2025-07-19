@@ -9,6 +9,7 @@ import Adddoctor from './Pages/Doctor/Adddoctor';
 import Doctors from './Pages/Doctor/Doctors';
 import { Provider } from 'react-redux';
 import store from './Storage/store';
+import Doctorsdetail from './Pages/Doctor/Doctorsdetail';
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -23,6 +24,7 @@ root.render(
             <Route path="/home" element={<Hospital />} />
             <Route path="/adddoctor" element={<Adddoctor />} />
             <Route path="/doctors" element={<Doctors />} />
+            <Route path="/doctorsdetail" element={<Doctorsdetail />} />
           </Route>
           <Route path="login" element={<Login />} />
         </Routes>

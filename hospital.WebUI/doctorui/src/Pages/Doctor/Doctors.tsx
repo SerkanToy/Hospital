@@ -14,7 +14,7 @@ function Doctors() {
     }, [data]);
 
     return (
-        <div className="nk-content ">
+        <div className="nk-content">
             <div className="container-fluid">
                 <div className="nk-content-inner">
                     <div className="nk-content-body">
