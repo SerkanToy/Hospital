@@ -1,19 +1,30 @@
 import {createApi,fetchBaseQuery} from "@reduxjs/toolkit/query/react"
+import { ENDPOINT_API, ENDPOINT_DOCTOR_CREATE, ENDPOINT_DOCTOR, ENDPOINT_DOCTOR_CONTROLLER } from "../../Models/ENDPOINT"
+import doctorModel from "../../Interfaces/Doctor/doctorModel"
+
 
 //doctorModel
 
 const doctorApi = createApi({
     reducerPath:"doctorApi",
     baseQuery:fetchBaseQuery({
-        baseUrl:"https://localhost:7027/api/Doctor/"
+        baseUrl:`${ENDPOINT_API}/${ENDPOINT_DOCTOR_CONTROLLER}/`
     }),
     tagTypes:["doctors"],
     endpoints:(builder)=>({
         getDoctors:builder.query({
             query:()=>({
-                url:"doctorlar"
+                url:`${ENDPOINT_DOCTOR}`
             }),
             providesTags:["doctors"]
+        }),
+        createDoctor:builder.mutation({
+            query:(doctorModel:any) => ({
+                url: "https://localhost:7027/api/Doctor/doctorkayit",//`${ENDPOINT_DOCTOR_CREATE}`,
+                method:"POST",
+                body:doctorModel              
+            }),
+            invalidatesTags:["doctors"]
         }),
         /*getDoctorById:builder.query({
             query:(Id)=>({
@@ -29,14 +40,7 @@ const doctorApi = createApi({
             invalidatesTags:["doctors"],
 
         }),
-        createDoctor:builder.mutation({
-            query:(doctorModel:any) => ({
-                url:"Create",
-                method:"POST",
-                body:doctorModel              
-            }),
-            invalidatesTags:["doctors"]
-        }),
+        
         updateDoctor:builder.mutation({            
             query:({doctorModel,Id}) => ({
                 url:`Update?Id=${Id}`,
@@ -50,5 +54,5 @@ const doctorApi = createApi({
 })
 
 
-export const {useGetDoctorsQuery} = doctorApi
+export const {useGetDoctorsQuery, useCreateDoctorMutation} = doctorApi
 export default doctorApi

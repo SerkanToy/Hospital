@@ -108,7 +108,7 @@ namespace hospital.Business.Concrete
 
             if (result.Succeeded)
             {
-                IdentityResult result1 = userManager.AddToRoleAsync(createUser, model.UserType).GetAwaiter().GetResult();
+                IdentityResult result1 = userManager.AddToRoleAsync(createUser, "doctor").GetAwaiter().GetResult();
                 apiResponse.StatusCode = HttpStatusCode.Created;
                 apiResponse.ErrorMessage = new List<string>();
                 apiResponse.isSuccess = true;

@@ -15,17 +15,17 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
-      <Routes>
-        <Route element={<App />}>
-          <Route path="/" element={<Hospital />} />
-          <Route path="/index" element={<Hospital />} />
-          <Route path="/home" element={<Hospital />} />
-          <Route path="/adddoctor" element={<Adddoctor />} />
-          <Route path="/doctors" element={<Doctors />} />
-        </Route>
-        <Route path="login" element={<Login />} />
-      </Routes>
-    </BrowserRouter></Provider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<App />}>
+            <Route path="/" element={<Hospital />} />
+            <Route path="/index" element={<Hospital />} />
+            <Route path="/home" element={<Hospital />} />
+            <Route path="/adddoctor" element={<Adddoctor />} />
+            <Route path="/doctors" element={<Doctors />} />
+          </Route>
+          <Route path="login" element={<Login />} />
+        </Routes>
+      </BrowserRouter></Provider>
   </React.StrictMode>
 );

@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
-using System.Security.Claims;
 
 namespace hospital.Doctor.Controllers
 {
@@ -32,6 +31,7 @@ namespace hospital.Doctor.Controllers
         // GET: api/<DoctorController>
         [HttpGet]
         [ActionName("doctorlar")]
+        //[Authorize]
         public async Task<IActionResult> All()
         {
             apiResponse.StatusCode = HttpStatusCode.OK;
@@ -43,6 +43,7 @@ namespace hospital.Doctor.Controllers
         // GET api/<DoctorController>/5
         [HttpGet("{id}")]
         [ActionName("doctor-getir")]
+        //[Authorize]
         public async Task<IActionResult> FindById(string id = null)
         {
             if (id is null)
@@ -60,9 +61,9 @@ namespace hospital.Doctor.Controllers
         }
         // POST api/<DoctorController>
         [HttpPost]
-        [ActionName("doctor-kayit")]
-        [Authorize]
-        public async Task<IActionResult> Create([FromBody] RegisterDoktorRequestDTO value)
+        [ActionName("doctorkayit")]
+        //[Authorize]
+        public async Task<IActionResult> Create([FromForm] RegisterDoktorRequestDTO value)
         {
             if (value is null)
             {
@@ -71,7 +72,7 @@ namespace hospital.Doctor.Controllers
                 apiResponse.ErrorMessage.Add("Kayıt için gerekli bilgiler eksik");
                 return BadRequest(apiResponse);
             }
-            value.FullName = User.FindFirst(x => x.Type == "FullName")?.Value!;
+            value.FullName = $"{value.Name} {value.SurName}"; //User.FindFirst(x => x.Type == "FullName")?.Value!;
             apiResponse = doctorServis.Register(value).Result;
             return Ok(apiResponse);
 

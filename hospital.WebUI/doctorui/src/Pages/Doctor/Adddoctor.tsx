@@ -1,7 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Breadcrumb from '../../Container/Breadcrumb'
+import { useCreateDoctorMutation } from '../../Api/repositoryDoctor/doctorApi';
+import doctorModel from '../../Interfaces/Doctor/doctorModel'
 
 function Adddoctor() {
+
+    const createDoktor = {
+        name: "",
+        surName: "",
+        tcNo: "",
+        sex: "",
+        addresses: "",
+        descriptions: "",
+        email: "",
+        password:"",
+        phoneNumber: ""
+    }
+
+    const [createDoctor] = useCreateDoctorMutation();
+    const [doctorModel, setDoctorModelState] = useState(createDoktor)
+    const [isActive, setIsActiveState] = useState<boolean>();
+
+
+
+    var formData = new FormData();
+
+    const handleCreateOrUpdateChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        formData.append("Name", doctorModel.name);
+        formData.append("SurName", doctorModel.surName);
+        formData.append("TCNo", doctorModel.tcNo);
+        formData.append("Sex", doctorModel.sex);
+        formData.append("Email", doctorModel.email);
+        formData.append("PhoneNumber", doctorModel.phoneNumber);
+        formData.append("Addresses", doctorModel.addresses);
+        formData.append("Descriptions", doctorModel.descriptions);
+        formData.append("Password", doctorModel.password);
+        createDoctor(formData);
+    }
+
     return (
         <div className="nk-content ">
             <div className="container-fluid">
@@ -11,200 +48,168 @@ function Adddoctor() {
                         <div className="nk-block">
                             <div className="card card-bordered">
                                 <div className="card-inner">
-                                    <div className="row gy-4">
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group">
-                                                <label className="form-label" htmlFor="first-name">First Name</label>
-                                                <div className="form-control-wrap">
-                                                    <input type="text"
-                                                        className="form-control" id="first-name"
-                                                        placeholder="First Name" required />
+                                    <form encType='multipart/form-data' onSubmit={handleCreateOrUpdateChange}>
+                                        <div className="row gy-4">
+                                            <div className="col-xxl-6 col-md-4">
+                                                <div className="form-group">
+                                                    <label className="form-label" htmlFor="first-name">İsim</label>
+                                                    <div className="form-control-wrap">
+                                                        <input type="text" className="form-control" id="first-name" placeholder="İsim" name='name'
+                                                            onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, name: e.target.value } }) }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-xxl-6 col-md-4">
+                                                <div className="form-group"><label className="form-label"
+                                                    htmlFor="last-name">Soyisim</label>
+                                                    <div className="form-control-wrap">
+                                                        <input type="text" className="form-control" id="last-name" placeholder="Soyisim"
+                                                            onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, surName: e.target.value } }) }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-xxl-4 col-md-4">
+                                                <div className="form-group">
+                                                    <label className="form-label" htmlFor="email">E-Posta</label>
+                                                    <div className="form-control-wrap">
+                                                        <input type="email" className="form-control" id="email" placeholder="E-Posta"
+                                                            onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, email: e.target.value } }) }} />
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label"
-                                                htmlFor="last-name">Last Name</label>
-                                                <div className="form-control-wrap">
-                                                    <input type="text" className="form-control" id="last-name" placeholder="Last Name" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">Gender</label>
-                                                <div className="form-control-wrap"><select
-                                                    className="form-select js-select2"
-                                                    data-placeholder="Select Gender">
-                                                    <option value="">Select Gender</option>
-                                                    <option value="option_select_gender">Male</option>
-                                                    <option value="option_select_gender">Female</option>
-                                                    <option value="option_select_gender">Other</option>
-                                                </select></div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">Date of
-                                                Birth</label>
-                                                <div className="form-control-wrap">
-                                                    <div className="form-icon form-icon-right"><em
-                                                        className="icon ni ni-calendar"></em></div>
-                                                    <input type="text" className="form-control date-picker-alt" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label"
-                                                htmlFor="phone-no">Phone</label>
-                                                <div className="form-control-wrap">
-                                                    <input type="number" className="form-control" id="phone-no" placeholder="Phone no" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group">
-                                                <label className="form-label" htmlFor="email">Email</label>
-                                                <div className="form-control-wrap">
-                                                    <input type="email" className="form-control" id="email" placeholder="Email" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group">
-                                                <label className="form-label" htmlFor="password">Password</label>
-                                                <div className="form-control-wrap">
-                                                    <input type="password" className="form-control" id="password" placeholder="Password" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">Adddress</label>
-                                                <div className="form-control-wrap">
-                                                    <input type="text" className="form-control" id="address" placeholder="Address" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label
-                                                className="form-label">Designation</label>
-                                                <div className="form-control-wrap">
-                                                    <input type="text" className="form-control" id="designation" placeholder="Designation" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">Department</label>
-                                                <div className="form-control-wrap"><select
-                                                    className="form-select js-select2"
-                                                    data-placeholder="Select Department">
-                                                    <option value="">Select</option>
-                                                    <option value="default_option">Allergy and immunology
-                                                    </option>
-                                                    <option value="option_select_department">Anesthesiology
-                                                    </option>
-                                                    <option value="option_select_department">Cardiology
-                                                    </option>
-                                                    <option value="option_select_department">Dermatology
-                                                    </option>
-                                                    <option value="option_select_department">Diagnostic
-                                                        radiology</option>
-                                                    <option value="option_select_department">Emergency
-                                                        medicine</option>
-                                                    <option value="option_select_department">Neurology
-                                                    </option>
-                                                    <option value="option_select_department">Obstetrics and
-                                                        gynecology</option>
-                                                    <option value="option_select_department">Ophthalmology
-                                                    </option>
-                                                    <option value="option_select_department">Pathology
-                                                    </option>
-                                                    <option value="option_select_department">Pediatrics
-                                                    </option>
-                                                    <option value="option_select_department">Psychiatry
-                                                    </option>
-                                                    <option value="option_select_department">Surgery
-                                                    </option>
-                                                    <option value="option_select_department">Urology
-                                                    </option>
-                                                </select></div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">Specialist</label>
-                                                <div className="form-control-wrap">
-                                                    <input type="text" className="form-control" id="specialist" placeholder="Specialist" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">Upload
-                                                Photo</label>
-                                                <div className="form-control-wrap">
-                                                    <div className="form-file">
-                                                        <input type="file" multiple className="form-file-input" id="customFile" />
-                                                        <label className="form-file-label" htmlFor="customFile">Choose file</label>
+                                            <div className="col-xxl-4 col-md-4">
+                                                <div className="form-group">
+                                                    <label className="form-label">Doğum Tarihi</label>
+                                                    <div className="form-control-wrap">
+                                                        <div className="form-icon form-icon-right"><em
+                                                            className="icon ni ni-calendar"></em></div>
+                                                        <input type="text" className="form-control date-picker-alt" data-date-format="dd.mm.yyyy" placeholder="dd.mm.yyyy" />
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">National
-                                                ID</label>
-                                                <div className="form-control-wrap">
-                                                    <div className="form-file">
-                                                        <input type="file" multiple className="form-file-input" id="nid" />
-                                                        <label className="form-file-label" htmlFor="nid">Choose file</label>
+
+                                            <div className="col-xxl-4 col-md-4">
+                                                <div className="form-group"><label className="form-label"
+                                                    htmlFor="phone-no">Telefon</label>
+                                                    <div className="form-control-wrap">
+                                                        <input type="number" className="form-control" id="phone-no" placeholder="00000000000"
+                                                            onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, phoneNumber: e.target.value } }) }} name="phoneNumber" />
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label
-                                                className="form-label">Certificates</label>
-                                                <div className="form-control-wrap">
-                                                    <div className="form-file">
-                                                        <input type="file" multiple={true} className="form-file-input" id="certificates" />
-                                                        <label className="form-file-label" htmlFor="certificates">Choose files</label>
+
+                                            <div className="col-xxl-4 col-md-4">
+                                                <div className="form-group"><label className="form-label">Cinsiyet</label>
+                                                    <div className="form-control-wrap">
+                                                        <select className="form-select js-select2"
+                                                            data-placeholder="Cinsiyet Seçin" onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, sex: e.target.value } }) }} name="sex" >
+                                                            <option value="" >Cinsiyet Seçin</option>
+                                                            <option value="1" >Bay</option>
+                                                            <option value="0">Bayan</option>
+                                                            <option value="2">Bay & Bayan</option>
+                                                        </select></div>
+                                                </div>
+                                            </div>
+                                            <div className="col-xxl-4 col-md-4">
+                                                <div className="form-group"><label className="form-label">Bölüm</label>
+                                                    <div className="form-control-wrap"><select
+                                                        className="form-select js-select2"
+                                                        data-placeholder="Bölüm Seçin">
+                                                        <option value="">Bölüm Seçin</option>
+                                                        <option value="default_option">
+                                                            Allergy and immunology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Anesthesiology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Cardiology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Dermatology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Diagnostic radiology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Emergency medicine
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Neurology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Obstetrics and gynecology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Ophthalmology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Pathology
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Pediatrics
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Psychiatry
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Surgery
+                                                        </option>
+                                                        <option value="option_select_department">
+                                                            Urology
+                                                        </option>
+                                                    </select></div>
+                                                </div>
+                                            </div>
+
+                                            <div className="col-xxl-4 col-md-4">
+                                                <div className="form-group"><label className="form-label"
+                                                    htmlFor="tcNo">T.C.</label>
+                                                    <div className="form-control-wrap">
+                                                        <input type="text" className="form-control" id="tcNo" placeholder="***********"
+                                                            onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, tcNo: e.target.value } }) }} name="tcNo" />
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">Joining
-                                                Date</label>
-                                                <div className="form-control-wrap">
-                                                    <div className="form-icon form-icon-right">
-                                                        <em className="icon ni ni-calendar"></em>
-                                                    </div>
-                                                    <input type="text" className="form-control date-picker" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-xxl-3 col-md-4">
-                                            <div className="form-group"><label className="form-label">Status</label>
-                                                <div className="form-control-wrap"><select
-                                                    className="form-select js-select2">
-                                                    <option value="default_option">Active</option>
-                                                    <option value="option_select_status">Inactive</option>
-                                                    <option value="option_select_status">Pending</option>
-                                                </select></div>
-                                            </div>
-                                        </div>
-                                        <div className="col-12">
-                                            <div className="form-group"><label className="form-label">Short
-                                                Biography</label>
-                                                <div className="form-control-wrap">
-                                                    <div className="quill-basic">
-                                                        <p>Hello World!</p>
+
+                                            <div className="col-xxl-12 col-md-4">
+                                                <div className="form-group"><label className="form-label"
+                                                    htmlFor="password">Şifre</label>
+                                                    <div className="form-control-wrap">
+                                                        <input type="password" className="form-control" id="password" placeholder="***********"
+                                                            onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, password: e.target.value } }) }} name="password" />
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div className="col-xxl-6 col-md-4">
+                                                <div className="form-group"><label className="form-label">Adres</label>
+                                                    <div className="form-control-wrap">
+                                                        <textarea className="form-control" id="address" placeholder="Adres"
+                                                            onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, addresses: e.target.value } }) }} name="addresses"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-xxl-6 col-md-4">
+                                                <div className="form-group"><label
+                                                    className="form-label">Açıklama</label>
+                                                    <div className="form-control-wrap">
+                                                        <textarea className="form-control" id="designation" placeholder="Açıklama"
+                                                            onChange={(e) => { setDoctorModelState((prevState) => { return { ...prevState, descriptions: e.target.value } }) }} name="descriptions"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div className="col-12">
+                                                <div className="form-group">
+                                                    <button type="submit" className="btn btn-primary">
+                                                        Doctor / Hemşire Kaydet
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="col-12">
-                                            <div className="form-group"><button type="submit"
-                                                className="btn btn-primary">Add Doctor/Nurse</button></div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

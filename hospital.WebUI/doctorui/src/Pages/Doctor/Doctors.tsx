@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumb from '../../Container/Breadcrumb'
-import { doctorModel } from '../../Interfaces/Doctor/doctorModel';
+import doctorModel  from '../../Interfaces/Doctor/doctorModel';
 import { useGetDoctorsQuery } from '../../Api/repositoryDoctor/doctorApi';
 
 function Doctors() {
@@ -243,20 +243,20 @@ function Doctors() {
                                                             id="uid" /><label className="custom-control-label"
                                                                 htmlFor="uid"></label></div>
                                                 </div>
-                                                <div className="nk-tb-col"><span className="sub-text">User</span></div>
+                                                <div className="nk-tb-col"><span className="sub-text">Doktor</span></div>
                                                 <div className="nk-tb-col tb-col-md"><span
                                                     className="sub-text">Role</span></div>
                                                 <div className="nk-tb-col tb-col-sm"><span
-                                                    className="sub-text">Email</span></div>
+                                                    className="sub-text">E-Posta</span></div>
                                                 <div className="nk-tb-col tb-col-md"><span
-                                                    className="sub-text">Phone</span></div>
+                                                    className="sub-text">Telefon</span></div>
                                                 <div className="nk-tb-col tb-col-xxl"><span
                                                     className="sub-text">Company</span></div>
                                                 <div className="nk-tb-col tb-col-lg"><span
                                                     className="sub-text">Verified</span></div>
                                                 <div className="nk-tb-col tb-col-xxl"><span className="sub-text">Last
                                                     Login</span></div>
-                                                <div className="nk-tb-col"><span className="sub-text">Status</span>
+                                                <div className="nk-tb-col"><span className="sub-text">Durum</span>
                                                 </div>
                                                 <div className="nk-tb-col nk-tb-col-tools text-end">
                                                     <div className="dropdown"><a href="#"
@@ -317,12 +317,12 @@ function Doctors() {
                                                                 <div
                                                                     className="custom-control custom-control-sm custom-checkbox notext">
                                                                     <input type="checkbox" className="custom-control-input"
-                                                                        id="uid1" /><label className="custom-control-label"
-                                                                            htmlFor="uid1"></label></div>
+                                                                        id={index} /><label className="custom-control-label"
+                                                                            htmlFor={index} ></label></div>
                                                             </div>
                                                             <div className="nk-tb-col">
                                                                 <div className="user-card">
-                                                                    <div className="user-avatar xs bg-primary"><span>{user.name.substring(0,1)}{user.surName.substring(0,1)}</span>
+                                                                    <div className="user-avatar xs bg-primary"><span>{user.name.substring(0, 1)}{user.surName.substring(0, 1)}</span>
                                                                     </div>
                                                                     <div className="user-name">
                                                                         <span className="tb-lead">
@@ -331,7 +331,7 @@ function Doctors() {
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div className="nk-tb-col tb-col-md"><span>Customer</span></div>
+                                                            <div className="nk-tb-col tb-col-md"><span>{user.userName}</span></div>
                                                             <div className="nk-tb-col tb-col-sm">
                                                                 <span>{user.email}</span>
                                                             </div>
@@ -340,9 +340,19 @@ function Doctors() {
                                                             <div className="nk-tb-col tb-col-xxl"><span>Bangladesh</span></div>
                                                             <div className="nk-tb-col tb-col-lg">
                                                                 <ul className="list-status">
-                                                                    <li><em
-                                                                        className="icon text-success ni ni-check-circle"></em>
-                                                                        <span>Email</span></li>
+                                                                    {
+                                                                        user.emailConfirmed ? 
+                                                                                <li>
+                                                                                    <em className="icon text-success ni ni-check-circle"></em>
+                                                                                    <span>E-Posta</span>
+                                                                                </li>
+                                                                                :
+                                                                                <li>
+                                                                                    <em className="icon text-danger ni ni-cross-circle"></em>
+                                                                                    <span>E-Posta</span>
+                                                                                </li>
+                                                                    }
+                                                                    
                                                                 </ul>
                                                             </div>
                                                             <div className="nk-tb-col tb-col-xxl"><span>10 Feb 2020</span></div>
@@ -375,8 +385,7 @@ function Doctors() {
                                                                             <div className="dropdown-menu dropdown-menu-end">
                                                                                 <ul className="link-list-opt no-bdr">
                                                                                     <li><a href="#"><em
-                                                                                        className="icon ni ni-eye"></em><span>View
-                                                                                            Details</span></a></li>
+                                                                                        className="icon ni ni-eye"></em><span>Detay</span></a></li>
                                                                                     <li><a href="#"><em
                                                                                         className="icon ni ni-repeat"></em><span>Orders</span></a>
                                                                                     </li>
@@ -384,9 +393,12 @@ function Doctors() {
                                                                                     <li><a href="#"><em
                                                                                         className="icon ni ni-shield-star"></em><span>Reset
                                                                                             Pass</span></a></li>
-                                                                                    <li><a href="#"><em
-                                                                                        className="icon ni ni-shield-off"></em><span>Reset
-                                                                                            2FA</span></a></li>
+                                                                                    <li>
+                                                                                        <a href="#">
+                                                                                            <em className="icon ni ni-shield-off"></em>
+                                                                                            <span>Reset 2FA</span>
+                                                                                        </a>
+                                                                                    </li>
                                                                                     <li><a href="#"><em
                                                                                         className="icon ni ni-na"></em><span>Suspend
                                                                                             User</span></a></li>
