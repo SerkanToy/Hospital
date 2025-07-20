@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { docktorReducer } from "./Redux/doctorSlice";
-import doctorApi from "../Api/repositoryDoctor/doctorApi";
+import { docktorReducer } from "../Pages/Doctor/Storage/Redux/doctorSlice";
+import doctorApi from "../Pages/Doctor/Api/doctorApi";
 
 const store = configureStore({
     reducer:{

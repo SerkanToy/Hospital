@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumb from '../../Container/Breadcrumb'
-import { useCreateDoctorMutation } from '../../Api/repositoryDoctor/doctorApi';
-import doctorModel from '../../Interfaces/Doctor/doctorModel'
+import { useCreateDoctorMutation } from './Api/doctorApi';
+import doctorModel from './DTOs/doctorModel'
 
 function Adddoctor() {
 

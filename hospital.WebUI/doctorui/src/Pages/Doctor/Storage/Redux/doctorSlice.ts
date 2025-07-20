@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initalState = {
-    doctors:[],
-    doctorId:"",
-    search:""
+    doctors: [],
+    doctorId: "",
+    doctor: "",
+    search: ""
 }
 
 export const doctorSlice = createSlice({
@@ -15,6 +16,7 @@ export const doctorSlice = createSlice({
         },
         getDoctor:(state,action) => {
             state.doctorId = action.payload
+            state.doctor = action.payload
         },
         setSearchItem:(state,action) => {
             state.search = action.payload

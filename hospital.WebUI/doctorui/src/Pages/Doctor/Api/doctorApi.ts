@@ -1,6 +1,6 @@
 import {createApi,fetchBaseQuery} from "@reduxjs/toolkit/query/react"
-import { ENDPOINT_API, ENDPOINT_DOCTOR_CREATE, ENDPOINT_DOCTOR, ENDPOINT_DOCTOR_CONTROLLER } from "../../Models/ENDPOINT"
-import doctorModel from "../../Interfaces/Doctor/doctorModel"
+import { ENDPOINT_API, ENDPOINT_DOCTOR_CREATE, ENDPOINT_DOCTOR, ENDPOINT_DOCTOR_CONTROLLER } from "../../../Models/ENDPOINT"
+import doctorModel from "../DTOs/doctorModel"
 
 
 //doctorModel
