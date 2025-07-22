@@ -1,9 +1,5 @@
 import React from 'react';
 
-/*import './App.css';
-import './Css/dashlite9b70.css'
-import './Css/theme9b70.css'*/
-
 import Menu from './Container/menu'
 import Country from './Container/Country'
 import Hospital from './Pages/Hospital';
@@ -30,7 +26,11 @@ function App() {
               <Route path="/home" element={<Hospital />} />
               <Route path="/adddoctor" element={<Adddoctor />} />
               <Route path="/doctors" element={<Doctors />} />
-              <Route path="/doctorsdetail" element={<Doctorsdetail />} />
+              <Route path="/nurses" element={<Doctors />} />
+              <Route path="/addnurses" element={<Adddoctor />} />
+              <Route path="/addemployee" element={<Adddoctor />} />
+              <Route path="/employees" element={<Doctors />} />
+              <Route path="/doctorsdetail/:Id" element={<Doctorsdetail />}  />
             </Routes>
           </div>
         </div>

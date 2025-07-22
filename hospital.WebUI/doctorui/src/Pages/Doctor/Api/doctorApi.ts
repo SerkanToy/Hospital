@@ -1,5 +1,5 @@
 import {createApi,fetchBaseQuery} from "@reduxjs/toolkit/query/react"
-import { ENDPOINT_API, ENDPOINT_DOCTOR_CREATE, ENDPOINT_DOCTOR, ENDPOINT_DOCTOR_CONTROLLER } from "../../../Models/ENDPOINT"
+import { ENDPOINT_API, ENDPOINT_DOCTOR_CREATE, ENDPOINT_DOCTOR, ENDPOINT_DOCTOR_CONTROLLER, ENDPOINT_DOCTOR_BY_ID } from "../../../Models/ENDPOINT"
 import doctorModel from "../DTOs/doctorModel"
 
 
@@ -26,13 +26,13 @@ const doctorApi = createApi({
             }),
             invalidatesTags:["doctors"]
         }),
-        /*getDoctorById:builder.query({
+        getDoctorById:builder.query({
             query:(Id)=>({
-                url:`/FindById/${Id}`,
+                url:`${ENDPOINT_DOCTOR_BY_ID}/${Id}`,
                 method:"GET",
             })
         }),
-        removeDoctor:builder.mutation({
+        /*removeDoctor:builder.mutation({
             query:(id)=> ({
                 url: `/Delete/${id}`,
                 method:"DELETE",
@@ -54,5 +54,5 @@ const doctorApi = createApi({
 })
 
 
-export const {useGetDoctorsQuery, useCreateDoctorMutation} = doctorApi
+export const {useGetDoctorsQuery, useCreateDoctorMutation, useGetDoctorByIdQuery} = doctorApi
 export default doctorApi

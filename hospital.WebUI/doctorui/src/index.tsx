@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Account/Login';
@@ -24,7 +23,11 @@ root.render(
             <Route path="/home" element={<Hospital />} />
             <Route path="/adddoctor" element={<Adddoctor />} />
             <Route path="/doctors" element={<Doctors />} />
-            <Route path="/doctorsdetail" element={<Doctorsdetail />} />
+            <Route path="/nurses" element={<Doctors />} />
+            <Route path="/addnurses" element={<Adddoctor />} />
+            <Route path="/addemployee" element={<Adddoctor />} />
+            <Route path="/employees" element={<Doctors />} />
+            <Route path="/doctorsdetail/:Id" element={<Doctorsdetail />} />
           </Route>
           <Route path="login" element={<Login />} />
         </Routes>

@@ -8,7 +8,7 @@ export const ENDPOINT_DOCTOR = "doctorlar"
 export const ENDPOINT_DOCTOR_CREATE = "doctorkayit"
 export const ENDPOINT_DOCTOR_DELETE = "doctor-kayit"
 export const ENDPOINT_DOCTOR_UPDATE = "doctor-kayit"
-export const ENDPOINT_DOCTOR_BY_ID = "doctor-kayit"
+export const ENDPOINT_DOCTOR_BY_ID = "doctor-getir"
 
 //Hastalar
 export const ENDPOINT_PATIENT = "Doctor"
