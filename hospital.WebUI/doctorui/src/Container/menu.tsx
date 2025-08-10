@@ -191,9 +191,11 @@ function Menu() {
                 <ul className="nk-menu-sub">
                   <li className="nk-menu-item"><a href="hospital/patient-add.html"
                     className="nk-menu-link"><span className="nk-menu-text">Add Patient</span></a></li>
-                  <li className="nk-menu-item"><a href="hospital/patient-list.html"
-                    className="nk-menu-link"><span className="nk-menu-text">IPD / OPD
-                      Patients</span></a></li>
+                  <li className="nk-menu-item">
+                    <a href="/patients" className="nk-menu-link">
+                      <span className="nk-menu-text">Hastalar</span>
+                    </a>
+                  </li>
                   <li className="nk-menu-item"><a href="hospital/patient-profile.html"
                     className="nk-menu-link"><span className="nk-menu-text">Patient Profile</span></a>
                   </li>

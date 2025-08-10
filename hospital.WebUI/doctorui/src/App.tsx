@@ -8,6 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 import Adddoctor from './Pages/Doctor/Adddoctor';
 import Doctors from './Pages/Doctor/Doctors';
 import Doctorsdetail from './Pages/Doctor/Doctorsdetail';
+import Patients from './Pages/Patient/Patients';
 
 
 function App() {
@@ -24,13 +25,22 @@ function App() {
               <Route path="/" element={<Hospital />} />
               <Route path="/index" element={<Hospital />} />
               <Route path="/home" element={<Hospital />} />
+
               <Route path="/adddoctor" element={<Adddoctor />} />
               <Route path="/doctors" element={<Doctors />} />
+              <Route path="/doctorsdetail/:Id" element={<Doctorsdetail />}  />
+
               <Route path="/nurses" element={<Doctors />} />
               <Route path="/addnurses" element={<Adddoctor />} />
+              <Route path="/nursesdetail/:Id" element={<Doctorsdetail />}  />
+
               <Route path="/addemployee" element={<Adddoctor />} />
-              <Route path="/employees" element={<Doctors />} />
-              <Route path="/doctorsdetail/:Id" element={<Doctorsdetail />}  />
+              <Route path="/employees" element={<Doctors />} />     
+              <Route path="/employeesdetail/:Id" element={<Doctorsdetail />}  />        
+
+              <Route path="/patients" element={<Patients />}  />
+              <Route path="/addpatient" element={<Patients />}  />
+              <Route path="/patientdetail/:Id" element={<Patients />}  />
             </Routes>
           </div>
         </div>

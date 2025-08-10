@@ -25,7 +25,6 @@ function Doctorcomponent(props: { doctor: doctorModel, index:any }) {
                     </div>
                 </div>
             </div>
-            <div className="nk-tb-col tb-col-md"><span>{doctor.userName}</span></div>
             <div className="nk-tb-col tb-col-sm">
                 <span>{doctor.email}</span>
             </div>

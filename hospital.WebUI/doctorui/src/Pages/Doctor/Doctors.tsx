@@ -248,8 +248,7 @@ function Doctors() {
                                                                 htmlFor="uid"></label></div>
                                                 </div>
                                                 <div className="nk-tb-col"><span className="sub-text">Doktor</span></div>
-                                                <div className="nk-tb-col tb-col-md"><span
-                                                    className="sub-text">Role</span></div>
+                                                
                                                 <div className="nk-tb-col tb-col-sm"><span
                                                     className="sub-text">E-Posta</span></div>
                                                 <div className="nk-tb-col tb-col-md"><span
